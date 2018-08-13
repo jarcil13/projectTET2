@@ -22,7 +22,7 @@ Se pretende también poder
 
 ## Requisitos Funcionales ##
 * se proveerá un sistema de autenticación de usuarios
-* se proveerá un sistema de generación de rutas de forma automática desde un momento dado por el usuario
+* se proveerá un sistema de generación de rutas desde y hasta un momento dado por el usuario
 
 
 
