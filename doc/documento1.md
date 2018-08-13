@@ -17,7 +17,7 @@ Se pretende también poder
 | Juan David Arcila Moreno | Seguridad |
 
 ## Aplicación ##
-
+La aplicación consiste en que los usuarios de esta pueden almacenar caminos que estos recorrieron y visualizarlos por esta misma
 
 
 ## Requisitos Funcionales ##
