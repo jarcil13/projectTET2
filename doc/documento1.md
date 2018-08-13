@@ -1,18 +1,28 @@
 Documento 1
 ===========
+** NOTA TEMPORAL ** 
+Se pretende también poder 
 
+## Índice ##
   - [Asgnación QAs](#asignación-qas)
   - [Aplicación](#aplicación)
   - [Requisitos Funcionales](#requisitos-funcionales)
+---
 
 ## Asignación QAs ##
-baina....
+| Estudiante | QA asignada |
+| --- | --- |
+| Andres Felipe Zapata Palacio | Disponibilidad |
+| Esteban Echeverri Jaramillo | Rendimiento |
+| Juan David Arcila Moreno | Seguridad |
 
 ## Aplicación ##
-baina
 
-##Requisitos Funconales##
-baina..
+
+
+## Requisitos Funcionales ##
+
+
 
 
 
