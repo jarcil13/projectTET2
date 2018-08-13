@@ -1,7 +1,5 @@
 Documento 1
-===========
-** NOTA TEMPORAL ** 
-Se pretende también poder 
+=========== 
 
 ## Índice ##
   - [Asgnación QAs](#asignación-qas)
