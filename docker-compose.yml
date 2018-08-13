@@ -1,0 +1,44 @@
+version: "3"
+volumes:
+  db-data:
+
+services:
+  db:
+    image: mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_USER: jarcil13
+      MYSQL_PASSWD: password
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3306:3306"
+
+  web:
+    build: .
+    command: rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/rails-project
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    links:
+      - db
+
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/confg.d/default.conf
+      - ./dh-param/dhparam-2048.pem:/etc/ssl/certs/dhparam-2048.pem
+      - /docker-volumes/etc/letsencrypt/live/jdarcilam.tk/fullchain.pem:/etc/letsencrypt/live/jdarcilam.tk/fullchain.pem
+      - /docker-volumes/etc/letsencrypt/live/jdarcilam.tk/privkey.pem:/etc/letsencrypt/live/jdarcilam.tk/privkey.pem
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - web
+    links:
+      - web

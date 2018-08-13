@@ -1,0 +1,34 @@
+
+ <p id="demo"></p>
+<center>
+ <div class="panel panel-success">
+      <div class="panel-heading"><h1>Api - Try</h1></div>
+      <div class="panel-body">This will send a POST to the url '/api/v1/markers' with your actual position, using the API token <%= current_user.api_token%> as 'api_token' parameter. After this, you can check your new marker in your home page</div>
+      <div class="panel-footer"> <button type="button" class="btn btn-danger" onclick="getLocation()">Try It</button>
+ - <%= link_to '<button type="button" class="btn btn-info">Go home</button>'.html_safe, home_show_path %></div>  </div> </center>
+<script>
+  var x = document.getElementById("demo");
+
+  function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+      } else { 
+          x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+  }
+
+  function showPosition(position) {
+    var http =new XMLHttpRequest();
+    var url = "../api/v1/markers?api_token=<%= current_user.api_token %>"
+    var longitude = position.coords.longitude;
+    var latitude = position.coords.latitude;
+    http.open("POST",url,true);
+    http.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+    http.onreadystatechange = function(){
+      if(http.readyState == 4 && http.status == 200){
+        alert(http.responseText);
+      }
+    }
+    http.send(JSON.stringify({long:longitude, lati:latitude}));
+  }
+  </script>

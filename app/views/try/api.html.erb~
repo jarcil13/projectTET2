@@ -1,0 +1,32 @@
+<h1>Api - Try</h1>
+ <button onclick="getLocation()">Try It</button>
+
+ <p id="demo"></p>
+
+<script>
+  var x = document.getElementById("demo");
+
+  function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+      } else { 
+          x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+  }
+
+  function showPosition(position) {
+    var http =new XMLHttpRequest();
+    var url = "api/v1/locations?token=<%= @current_user.api_token %>"
+    var longitude = position.coords.longitude;
+    var latitude = position.coords.latitude;
+    http.open("POST",url,true);
+    http.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+    http.onreadystatechange = function(){
+      if(http.readyState == 4 && http.status == 200){
+        alert(http.responseText);
+      }
+    }
+    http.send(JSON.stringify({long:longitude, lati:latitude}));
+    window.location.replace("/");
+  }
+  </script>

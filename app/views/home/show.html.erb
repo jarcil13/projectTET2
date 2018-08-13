@@ -1,0 +1,43 @@
+<script>
+  var map;
+  function initMap() {
+    var home = {lat: <%= @flati %>, lng: <%= @flong %> };
+    map = new google.maps.Map(document.getElementById('map'), {zoom: 15, center: home});
+    <% @markers.each do |m| %>
+          var point = {lat: <%= m.lati %>, lng: <%= m.long %>};
+          var marker = new google.maps.Marker({position: point, map: map, title:"marker" });
+    <% end %>
+  }
+</script>
+
+<div class="container">
+  <h1>Welcome - Home</h1>
+  <div class="panel panel-default">
+    <div class="panel-heading">Email:</div>
+    <div class="panel-body"> <%= current_user.email %> </div>
+  </div>
+</div>
+<br></br>
+<center> <div class="row">
+   <div class="col-sm-4">
+     <%= button_to "Log out", destroy_user_session_url, method: :delete %>
+   </div>
+   <div class="col-sm-4"><%= link_to '<button type="button" class="btn btn-info">Try API by your self!</button>'.html_safe, try_api_path %></div>
+   <div class="col-sm-4">You have '<%= @markers.size %>' markers</div>
+</div> </center>
+
+<br></br>
+
+<div class="container">
+  <h2>Api - Key</h2>
+  <div>If you want to use the API and send position marks, use this secure TOKEN </div>
+  <div class="panel panel-default">
+    <div class="panel-body"> <%= current_user.api_token %></div>
+  </div>
+</div>
+<br></br>
+
+<h3>Actual Markers</h3>
+    
+<div id="map"></div>
+
